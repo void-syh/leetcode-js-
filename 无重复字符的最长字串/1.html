@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<img src="1.PNG" >
+		<script type="text/javascript">
+			var lengthOfLongestSubstring = function(s) {
+				let max = 0,
+					n = 0,
+					flag = 0,
+					count=0;
+				for (let i = 0; i < s.length; i++) {
+					for (let j=1; j <= count; j++) {
+						if (s[i] === s[i - j]) {
+							flag = 1;
+							count=j;
+						}
+					}
+					if (flag) {
+						max = max > n ? max : n;
+						n=count;
+						flag=0;
+					} else {
+						n++;
+						count++;
+					}
+				}
+				max = max > n ? max : n;
+				return max;
+			};
+			console.log(lengthOfLongestSubstring('abcabcbb'));
+			console.log(lengthOfLongestSubstring('bbbbb'));
+			console.log(lengthOfLongestSubstring('pwwkew'));
+			console.log(lengthOfLongestSubstring('asdasdedsd'));
+		</script>
+	</body>
+</html>
