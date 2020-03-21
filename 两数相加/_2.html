@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<img src="2.PNG" >
+		<script type="text/javascript">
+			function ListNode(val) {
+				this.val = val;
+				this.next = null;
+			}
+			let addNumbers = function(l1, l2) {
+				let l3 =new ListNode('head');
+				let p = l3;
+				let n=0;
+				while(l1||l2){
+					const n1 = l1?l1.val:0;
+					const n2 = l2?l2.val:0;
+					let sum =n1+n2+n;
+					p.next=new ListNode(sum%10);
+					p=p.next;
+					n=parseInt(sum/10);
+					if(l1) l1=l1.next;
+					if(l2) l2=l2.next;
+				}
+				if(n){
+					p.next=new ListNode(1);
+				}
+				return l3.next;
+			}
+			let l1 = new ListNode(2);
+			l1.next = new ListNode(4);
+			l1.next.next = new ListNode(3);
+			let l2 = new ListNode(5);
+			l2.next = new ListNode(6);
+			l2.next.next = new ListNode(4);
+			console.log(addNumbers(l1, l2));
+		</script>
+	</body>
+</html>
