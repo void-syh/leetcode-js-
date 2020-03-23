@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!-- 给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。
+		请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。
+		你可以假设 nums1 和 nums2 不会同时为空。
+		
+		来源：力扣（LeetCode）
+		链接：https://leetcode-cn.com/problems/median-of-two-sorted-arrays
+		著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。 -->
+	</head>
+	<body>
+		<img src="1.PNG" >
+		<script type="text/javascript">
+			var findMedianSortedArrays = function(nums1, nums2) {
+				let arrayAll = [...nums1, ...nums2];
+				let length = arrayAll.length;
+				for (let i = 0; i < length - 1; i++) {
+					for (let j = length - 1; j >= i; j--) {
+						if (arrayAll[j] < arrayAll[j - 1]) {
+							[arrayAll[j], arrayAll[j - 1]] = [arrayAll[j - 1], arrayAll[j]];
+						}
+					}
+				}
+				if (length % 2 === 0) {
+					return (arrayAll[length / 2 - 1] + arrayAll[length / 2]) / 2;
+				} else {
+					return arrayAll[Math.floor(length / 2)];
+				}
+			};
+			let nums1 = [-1, -2],
+				nums2 = [3];
+			let nums3 = [1, ],
+				nums4 = [2, 3, 4, 5, 6, 7, 8, 9, 10];
+			let nums5 = [2, 4],
+				nums6 = [1, 3];
+			console.log(findMedianSortedArrays(nums1, nums2));
+			console.log(findMedianSortedArrays(nums3, nums4));
+			console.log(findMedianSortedArrays(nums5, nums6));
+		</script>
+	</body>
+</html>
