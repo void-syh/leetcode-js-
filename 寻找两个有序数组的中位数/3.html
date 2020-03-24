@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<img src="3.PNG" >
+		<script type="text/javascript">
+			var findMedianSortedArrays = function(nums1, nums2) {
+				if (nums1.length > nums2.length)[nums1, nums2] = [nums2, nums1];
+				let half = Math.floor((nums1.length + nums2.length + 1) / 2);
+				const flag = (nums1.length + nums2.length) % 2;
+				if (nums1.length === 0) {
+					if (flag)
+						return nums2[half - nums1.length - 1];
+					else
+						return (nums2[half - nums1.length - 1] + nums2[half - nums1.length]) / 2;
+				}
+				while (half != 1) {
+					if (nums1[0] < nums2[0]) {
+						if (nums1.length <= 1) {
+							if (flag)
+								return nums2[half - nums1.length - 1];
+							else
+								return (nums2[half - nums1.length - 1] + nums2[half - nums1.length]) / 2;
+						} else {
+							nums1 = nums1.slice(1);
+						}
+					} else {
+						nums2 = nums2.slice(1);
+					}
+					half--;
+				}
+				if (flag)
+					return nums1[0] < nums2[0] ? nums1[0] : nums2[0];
+				else if (nums1[0] < nums2[0]) {
+					if (nums1[1] < nums2[0]) {
+						return (nums1[0] + nums1[1]) / 2;
+					} else {
+						return (nums1[0] + nums2[0]) / 2;
+					}
+				} else {
+					if (nums2[1] < nums1[0]) {
+						return (nums2[0] + nums2[1]) / 2;
+					} else {
+						return (nums1[0] + nums2[0]) / 2;
+					}
+				}
+			};
+			let nums1 = [-2, -1],
+				nums2 = [3];
+			let nums3 = [1],
+				nums4 = [2, 3, 4, 5, 6, 7, 8, 9, 10];
+			let nums5 = [1, 4],
+				nums6 = [2, 3, 5, 6, 7];
+			console.log(findMedianSortedArrays(nums1, nums2));
+			console.log(findMedianSortedArrays(nums3, nums4));
+			console.log(findMedianSortedArrays(nums5, nums6));
+		</script>
+	</body>
+</html>
